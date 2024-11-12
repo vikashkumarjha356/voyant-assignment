@@ -1,30 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import SearchBar from './components/Searchbar';
 import ProductList from './components/ProductList';
-import { ProductProvider } from './context/ProductsContext';
+import { ProductContext, ProductProvider } from './context/ProductsContext';
 import { Toaster } from 'react-hot-toast';
 
 const App = () => {
-  const [cart, setCart] = useState([]);
-  const [filters, setFilters] = useState({});
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const addToCart = (product) => {
-    setCart([...cart, product]);
-  };
-
-  const clearCart = () => {
-    setCart([]);
-  };
-
+  console.log(x)
   return (
     <ProductProvider>
       <div className="flex">
         <div className="flex-1">
-          <Header cartCount={cart.length} clearCart={clearCart} />
-          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <Header />
+          <SearchBar />
           <ProductList />
         </div>
       </div>

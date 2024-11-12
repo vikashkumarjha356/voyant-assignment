@@ -39,11 +39,14 @@ export const ProductProvider = ({ children }) => {
             return product.price >= min && product.price <= max;
         });
 
-        return matchesColor && matchesType && matchesGender && matchesPrice;
+        const searched = [product.name, product.color, product.type]
+            .some(attr => attr.toLowerCase().includes(searchTerm))
+
+        return matchesColor && matchesType && matchesGender && matchesPrice && searched;
     });
 
 
-    console.log(filters);
+    console.log(searchTerm);
 
     // Fetch products from the API
     useEffect(() => {
