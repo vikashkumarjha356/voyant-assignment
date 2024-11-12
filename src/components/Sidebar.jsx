@@ -1,53 +1,109 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { ProductContext } from '../context/ProductsContext';
 
 const Sidebar = () => {
-    const { filters, setFilters } = useContext(ProductContext);
-
+    const { products, filters, setFilters } = useContext(ProductContext);
+    const uniqueColors = [...new Set(products.map(product => product.color))];
+    const uniqueType = [...new Set(products.map(product => product.type))];
+    const uniqueGender = [...new Set(products.map(product => product.gender))];
     const handleChange = (e, category) => {
-        console.log(e.target.value)
-        setFilters({ ...filters, [category]: e.target.value });
+        const { value, checked } = e.target;
+        setFilters(prevFilters => {
+            // If checked, add the category field with the value
+            if (checked) {
+                return {
+                    ...prevFilters,
+                    [category]: [...(prevFilters[category] || []), value]
+                };
+            } else {
+                // If unchecked, remove the value from the array
+                return {
+                    ...prevFilters,
+                    [category]: prevFilters[category].filter(item => item !== value)
+                };
+            }
+        });
     };
 
     return (
-        <aside className="p-4 bg-white shadow-md">
-            <div className="mb-4">
-                <h2 className="font-bold">Colour</h2>
-                {['Red', 'Blue', 'Green'].map((color) => (
-                    <label key={color} className="block">
-                        <input type="checkbox" name="color" value={color} onChange={(e) => handleChange(e, 'color')} />
-                        {color}
-                    </label>
-                ))}
-            </div>
-            <div className="mb-4">
-                <h2 className="font-bold">Gender</h2>
-                {['Men', 'Women'].map((gender) => (
-                    <label key={gender} className="block">
-                        <input type="checkbox" name="gender" value={gender} onChange={(e) => handleChange(e, 'gender')} />
-                        {gender}
-                    </label>
-                ))}
-            </div>
-            <div className="mb-4">
-                <h2 className="font-bold">Price</h2>
-                {['0-Rs250', 'Rs251-450', 'Rs450+'].map((range) => (
-                    <label key={range} className="block">
-                        <input type="checkbox" name="price" value={range} onChange={(e) => handleChange(e, 'price')} />
-                        {range}
-                    </label>
-                ))}
-            </div>
+        <aside className="p-6 bg-white shadow-xl rounded-lg w-80 space-y-6">
+
             <div>
-                <h2 className="font-bold">Type</h2>
-                {['Polo', 'Hoodie', 'Basic'].map((type) => (
-                    <label key={type} className="block">
-                        <input type="checkbox" name="type" value={type} onChange={(e) => handleChange(e, 'type')} />
-                        {type}
-                    </label>
-                ))}
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">Color</h2>
+                <div className="space-y-2">
+                    {uniqueColors.map((color) => (
+                        <label key={color} className="flex items-center space-x-2 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                name="color"
+                                value={color}
+                                onChange={(e) => handleChange(e, 'color')}
+                                className="form-checkbox h-4 w-4 text-indigo-600"
+                            />
+                            <span className="text-gray-700">{color}</span>
+                        </label>
+                    ))}
+                </div>
+            </div>
+
+
+            <div>
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">Gender</h2>
+                <div className="space-y-2">
+                    {uniqueGender.map((gender) => (
+                        <label key={gender} className="flex items-center space-x-2 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                name="gender"
+                                value={gender}
+                                onChange={(e) => handleChange(e, 'gender')}
+                                className="form-checkbox h-4 w-4 text-indigo-600"
+                            />
+                            <span className="text-gray-700">{gender}</span>
+                        </label>
+                    ))}
+                </div>
+            </div>
+
+
+            <div>
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">Price</h2>
+                <div className="space-y-2">
+                    {['0-Rs250', 'Rs251-450', 'Rs450-500'].map((range) => (
+                        <label key={range} className="flex items-center space-x-2 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                name="price"
+                                value={range}
+                                onChange={(e) => handleChange(e, 'price')}
+                                className="form-checkbox h-4 w-4 text-indigo-600"
+                            />
+                            <span className="text-gray-700">{range}</span>
+                        </label>
+                    ))}
+                </div>
+            </div>
+
+
+            <div>
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">Type</h2>
+                <div className="space-y-2">
+                    {uniqueType.map((type) => (
+                        <label key={type} className="flex items-center space-x-2 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                name="type"
+                                value={type}
+                                onChange={(e) => handleChange(e, 'type')}
+                                className="form-checkbox h-4 w-4 text-indigo-600"
+                            />
+                            <span className="text-gray-700">{type}</span>
+                        </label>
+                    ))}
+                </div>
             </div>
         </aside>
+
     );
 };
 

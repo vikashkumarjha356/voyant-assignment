@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 // Create the context
 export const ProductContext = createContext();
@@ -10,18 +11,39 @@ function reducer(state, action) {
 }
 
 const initialState = {
-    product: []
+    product: [],
+    filteredProducts: [],
 }
 // Provider component
 export const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
-    const [filters, setFilters] = useState({});
+    const [filters, setFilters] = useState({
+        color: [],
+        type: [],
+        gender: [],
+        price: []
+    });
     const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
 
+    const filteredProducts = products.filter(product => {
+        const matchesColor = filters.color.length === 0 || filters.color.includes(product.color);
+        const matchesType = filters.type.length === 0 || filters.type.includes(product.type);
+        const matchesGender = filters.gender.length === 0 || filters.gender.includes(product.gender);
+
+        const matchesPrice = filters.price.length === 0 || filters.price.some(priceRange => {
+            const [min, max] = priceRange.replace('Rs', '').split('-').map(Number);
+            return product.price >= min && product.price <= max;
+        });
+
+        return matchesColor && matchesType && matchesGender && matchesPrice;
+    });
+
+
+    console.log(filters);
 
     // Fetch products from the API
     useEffect(() => {
@@ -43,7 +65,11 @@ export const ProductProvider = ({ children }) => {
 
     // Add product to cart
     const addToCart = (product) => {
-        setCart([...cart, product]);
+        let existingProduct = cart.filter(cartProduct => cartProduct.id === product.id);
+        if (existingProduct.length < product.quantity)
+            setCart([...cart, product]);
+        else
+            toast.error("Max limit reached. Can't add more product of this type")
     };
 
     // Clear the cart
@@ -55,6 +81,7 @@ export const ProductProvider = ({ children }) => {
         <ProductContext.Provider
             value={{
                 products,
+                filteredProducts,
                 cart,
                 filters,
                 searchTerm,
