@@ -3,7 +3,11 @@ import React from 'react';
 const ProductCard = ({ product, addToCart }) => {
     return (
         <div className="border rounded shadow-md p-4">
-            <div className="h-40 bg-gray-200 mb-4"></div>
+            <img
+                src={product.imageURL} // Use the image URL from your product object
+                alt={product.name}
+                className="h-40 w-full object-cover mb-4 rounded" // Style the image
+            />
             <h3 className="font-bold">{product.name}</h3>
             <p className="text-gray-700">Rs {product.price}</p>
             <button

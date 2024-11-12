@@ -3,7 +3,7 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import SearchBar from './components/Searchbar';
 import ProductList from './components/ProductList';
-import { ProductProvider } from './context/ProductContext';
+import { ProductProvider } from './context/ProductsContext';
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -25,7 +25,7 @@ const App = () => {
         <div className="flex-1">
           <Header cartCount={cart.length} clearCart={clearCart} />
           <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-          <ProductList products={productsData} addToCart={addToCart} />
+          <ProductList />
         </div>
       </div>
     </ProductProvider>

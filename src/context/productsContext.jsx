@@ -1,14 +1,29 @@
 import React, { createContext, useState, useEffect } from 'react';
 
+// Create the context
 export const ProductContext = createContext();
 
+
+
+function reducer(state, action) {
+
+}
+
+const initialState = {
+    product: []
+}
+// Provider component
 export const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
+    const [filters, setFilters] = useState({});
+    const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Fetch products from API
+
+
+    // Fetch products from the API
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -26,19 +41,33 @@ export const ProductProvider = ({ children }) => {
         fetchProducts();
     }, []);
 
-    // Add to cart
+    // Add product to cart
     const addToCart = (product) => {
         setCart([...cart, product]);
     };
 
-    // Clear cart
+    // Clear the cart
     const clearCart = () => {
         setCart([]);
     };
 
     return (
-        <ProductContext.Provider value={{ products, cart, addToCart, clearCart, loading, error }}>
+        <ProductContext.Provider
+            value={{
+                products,
+                cart,
+                filters,
+                searchTerm,
+                loading,
+                error,
+                setFilters,
+                setSearchTerm,
+                addToCart,
+                clearCart,
+            }}
+        >
             {children}
         </ProductContext.Provider>
     );
 };
+
