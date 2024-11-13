@@ -39,7 +39,7 @@ const App = () => {
             },
           },
           error: {
-            duration: 5000,
+            duration: 3000,
             style: {
               backgroundColor: "#ffebee", // Light red background for error
               color: "#c62828", // Dark red text color

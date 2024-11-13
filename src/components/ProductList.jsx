@@ -13,10 +13,12 @@ const ProductList = () => {
 
         <div className='flex'>
             <Sidebar />
-            <div className="flex-1 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-                {filteredProducts.map((product) => (
-                    <ProductCard key={product.id} product={product} addToCart={addToCart} />
-                ))}
+            <div className="ml-8 w-full h-[calc(100vh-4rem)] overflow-y-scroll scrollbar-hidden">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+                    {filteredProducts.map((product) => (
+                        <ProductCard key={product.id} product={product} addToCart={addToCart} />
+                    ))}
+                </div>
             </div>
         </div>
     );

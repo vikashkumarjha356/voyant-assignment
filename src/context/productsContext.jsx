@@ -17,9 +17,15 @@ export const ProductProvider = ({ children }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+
+    // Toggle the visibility of the sidebar
+    const toggleSidebar = () => {
+        setIsMobileSidebarOpen(!isMobileSidebarOpen);
+    };
 
 
-    const filteredProducts = products.filter(product => {
+    const filteredProducts = products?.filter(product => {
         const matchesColor = filters.color.length === 0 || filters.color.includes(product.color);
         const matchesType = filters.type.length === 0 || filters.type.includes(product.type);
         const matchesGender = filters.gender.length === 0 || filters.gender.includes(product.gender);
@@ -34,9 +40,6 @@ export const ProductProvider = ({ children }) => {
 
         return matchesColor && matchesType && matchesGender && matchesPrice && searched;
     });
-
-
-    console.log(searchTerm);
 
     // Fetch products from the API
     useEffect(() => {
@@ -80,10 +83,12 @@ export const ProductProvider = ({ children }) => {
                 searchTerm,
                 loading,
                 error,
+                isMobileSidebarOpen,
                 setFilters,
                 setSearchTerm,
                 addToCart,
                 clearCart,
+                toggleSidebar
             }}
         >
             {children}
