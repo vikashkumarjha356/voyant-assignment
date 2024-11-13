@@ -1,8 +1,8 @@
 import Header from './components/Header';
 import SearchBar from './components/Searchbar';
 import ProductList from './components/ProductList';
-import { ProductProvider } from './context/ProductsContext';
 import { Toaster } from 'react-hot-toast';
+import { ProductProvider } from './context/ProductsContext';
 
 const App = () => {
   return (
