@@ -8,7 +8,7 @@ const SearchBar = () => {
     const { setSearchTerm, toggleSidebar } = useContext(ProductContext);
 
     return (
-        <div className="flex items-center justify-center w-full max-w-lg mx-auto bg-transparent pb-1 border-b-2 mt-3 mb-2 border-gray-300">
+        <div className="flex items-center justify-center w-full max-w-lg mx-auto bg-transparent pb-1 px-1 border-b-2 mt-3 mb-2 border-gray-300">
             {/* Search Input */}
             <input
                 type="text"
