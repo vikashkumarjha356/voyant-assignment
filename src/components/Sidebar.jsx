@@ -26,13 +26,13 @@ const Sidebar = () => {
     };
 
     return (
-        <aside className={`${isMobileSidebarOpen ? 'w-full absolute z-[999] animate-slide-in' : 'hidden'} md:block p-6 bg-white shadow-xl rounded-lg w-80 space-y-6`}>
+        <aside className={`${isMobileSidebarOpen ? 'w-full absolute z-[999] animate-slide-in' : 'hidden'} md:block p-6 bg-white shadow-xl rounded-base w-80 space-y-6  h-[calc(100vh-6rem)] overflow-y-scroll scrollbar-hidden`}>
 
             <div>
-                <h2 className="text-2xl font-semibold text-gray-800 mb-4">Color</h2>
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">Color</h2>
                 <div className="space-y-2">
                     {uniqueColors.map((color) => (
-                        <label key={color} className="flex text-xl items-center space-x-2 cursor-pointer">
+                        <label key={color} className="flex text-base items-center space-x-2 cursor-pointer">
                             <input
                                 type="checkbox"
                                 name="color"
@@ -48,10 +48,10 @@ const Sidebar = () => {
 
 
             <div>
-                <h2 className="text-2xl font-semibold text-gray-800 mb-4">Gender</h2>
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">Gender</h2>
                 <div className="space-y-2">
                     {uniqueGender.map((gender) => (
-                        <label key={gender} className="flex text-xl items-center space-x-2 cursor-pointer">
+                        <label key={gender} className="flex text-base items-center space-x-2 cursor-pointer">
                             <input
                                 type="checkbox"
                                 name="gender"
@@ -67,10 +67,10 @@ const Sidebar = () => {
 
 
             <div>
-                <h2 className="text-2xl font-semibold text-gray-800 mb-4">Price</h2>
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">Price</h2>
                 <div className="space-y-2">
                     {['0-Rs250', 'Rs251-450', 'Rs450-500'].map((range) => (
-                        <label key={range} className="flex text-xl items-center space-x-2 cursor-pointer">
+                        <label key={range} className="flex text-base items-center space-x-2 cursor-pointer">
                             <input
                                 type="checkbox"
                                 name="price"
@@ -86,10 +86,10 @@ const Sidebar = () => {
 
 
             <div>
-                <h2 className="text-2xl font-semibold text-gray-800 mb-4">Type</h2>
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">Type</h2>
                 <div className="space-y-2">
                     {uniqueType.map((type) => (
-                        <label key={type} className="flex text-xl items-center space-x-2 cursor-pointer">
+                        <label key={type} className="flex text-base items-center space-x-2 cursor-pointer">
                             <input
                                 type="checkbox"
                                 name="type"

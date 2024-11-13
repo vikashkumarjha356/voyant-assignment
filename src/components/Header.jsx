@@ -5,7 +5,7 @@ const Header = () => {
     const { cart, clearCart } = useContext(ProductContext);
 
     return (
-        <header className="w-full flex justify-between items-center p-6 bg-gradient-to-r from-blue-500 to-indigo-600 shadow-xl">
+        <header className="w-full flex justify-between items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 shadow-xl">
             <h1 className="text-2xl font-bold text-white">Products</h1>
             <div className="flex items-center gap-6">
                 <button
