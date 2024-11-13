@@ -1,9 +1,7 @@
-import React, { useState, useContext } from 'react';
 import Header from './components/Header';
-import Sidebar from './components/Sidebar';
 import SearchBar from './components/Searchbar';
 import ProductList from './components/ProductList';
-import { ProductContext, ProductProvider } from './context/ProductsContext';
+import { ProductProvider } from './context/ProductsContext';
 import { Toaster } from 'react-hot-toast';
 
 const App = () => {

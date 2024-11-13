@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { ProductContext } from '../context/ProductsContext';
 
 const Sidebar = () => {
-    const { products, filters, setFilters, isMobileSidebarOpen } = useContext(ProductContext);
+    const { products, setFilters, isMobileSidebarOpen } = useContext(ProductContext);
     const uniqueColors = [...new Set(products.map(product => product.color))];
     const uniqueType = [...new Set(products.map(product => product.type))];
     const uniqueGender = [...new Set(products.map(product => product.gender))];

@@ -4,7 +4,7 @@ import { ProductContext } from '../context/ProductsContext';
 import Sidebar from './Sidebar';
 
 const ProductList = () => {
-    const { products, filteredProducts, loading, error, addToCart } = useContext(ProductContext);
+    const { filteredProducts, loading, error, addToCart } = useContext(ProductContext);
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error fetching products: {error}</div>;
