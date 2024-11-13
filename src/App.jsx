@@ -7,7 +7,6 @@ import { ProductContext, ProductProvider } from './context/ProductsContext';
 import { Toaster } from 'react-hot-toast';
 
 const App = () => {
-  console.log(x)
   return (
     <ProductProvider>
       <div className="flex">

@@ -4,16 +4,6 @@ import toast from 'react-hot-toast';
 // Create the context
 export const ProductContext = createContext();
 
-
-
-function reducer(state, action) {
-
-}
-
-const initialState = {
-    product: [],
-    filteredProducts: [],
-}
 // Provider component
 export const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
